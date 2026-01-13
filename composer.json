@@ -1,0 +1,20 @@
+{
+    "name": "tuantran/common",
+    "description": "This is a package for the Microservice",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tuantran\\Common\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tuan Tran",
+            "email": "tranvantuan190392@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^12.0"
+    }
+}

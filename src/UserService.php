@@ -2,6 +2,7 @@
 
 namespace Microservices;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 
@@ -63,8 +64,13 @@ class UserService
 
     public function get($id)
     {
-        $json = $this->request()->get($this->endpoint . '/users/' . $id);
-        return new User($json);
+        $response = $this->request()->get($this->endpoint . '/users/' . $id);
+        if (!$response instanceof Response || !$response->successful()) {
+            return null;
+        }
+
+        $json = $response->json();
+        return is_array($json) ? new User($json) : null;
     }
 
     public function create($data)
